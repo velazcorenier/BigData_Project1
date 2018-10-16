@@ -24,12 +24,15 @@ public class TwitterKeyWordMapper extends Mapper<LongWritable, Text, Text, IntWr
         for(int i=0; i<stopWords.length; i++)
             container.add(stopWords[i]);
 
-
         try {
             Status status = TwitterObjectFactory.createStatus(rawTweet);
             String tweet = status.getText().toLowerCase();
-            if(!(container.contains(tweet)))
-                context.write(new Text(tweet), new IntWritable(1));
+            String[] tweetArray = tweet.split(" ");
+
+            for(int i=0; i<tweetArray.length; i++) {
+                if(!(container.contains(tweet)))
+                    context.write(new Text(tweet), new IntWritable(1));
+            }
         } catch (TwitterException e) {
 
         }
