@@ -10,7 +10,7 @@ public class TwitterKeyWorkDriver {
 
     public static void main(String[] args) throws Exception {
         if (args.length != 2) {
-            System.err.println("Usage: wordcounterpackage.TwitterKeyWorkDriver <input path> <output path>");
+            System.err.println("Usage: TwitterKeyWorkDriver <input path> <output path>");
             System.exit(-1);
         }
         Job job = new Job();

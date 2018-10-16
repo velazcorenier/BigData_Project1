@@ -17,23 +17,23 @@ public class TwitterKeyWordMapper extends Mapper<LongWritable, Text, Text, IntWr
         try {
             Status status = TwitterObjectFactory.createStatus(rawTweet);
             String tweet = status.getText().toUpperCase();
-            if (tweet.contains("Trump")) {
-                context.write(new Text("Trump"), new IntWritable(1));
+            if (tweet.contains("TRUMP")) {
+                context.write(new Text("TRUMP"), new IntWritable(1));
             }
-            else if (tweet.contains("Zika")) {
-                context.write(new Text("Zika"), new IntWritable(1));
+            else if (tweet.contains("ZIKA")) {
+                context.write(new Text("ZIKA"), new IntWritable(1));
             }
-            else if (tweet.contains("Diarrhea")) {
-                context.write(new Text("Diarrhea"), new IntWritable(1));
+            else if (tweet.contains("DIARRHEA")) {
+                context.write(new Text("DIARRHEA"), new IntWritable(1));
             }
-            else if (tweet.contains("Ebola")) {
-                context.write(new Text("Diarrhea"), new IntWritable(1));
+            else if (tweet.contains("EBOLA")) {
+                context.write(new Text("EBOLA"), new IntWritable(1));
             }
-            else if (tweet.contains("Headache")) {
-                context.write(new Text("Headache"), new IntWritable(1));
+            else if (tweet.contains("HEADACHE")) {
+                context.write(new Text("HEADACHE"), new IntWritable(1));
             }
-            else if (tweet.contains("Measles")) {
-                context.write(new Text("Measles"), new IntWritable(1));
+            else if (tweet.contains("MEASLES")) {
+                context.write(new Text("MEASLES"), new IntWritable(1));
             }
         } catch (TwitterException e) {
 
