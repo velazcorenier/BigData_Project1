@@ -26,12 +26,18 @@ public class TwitterKeyWordMapper extends Mapper<LongWritable, Text, Text, IntWr
 
         try {
             Status status = TwitterObjectFactory.createStatus(rawTweet);
+
             String tweet = status.getText().toLowerCase();
+
+//                    .replaceAll("((www\\.[^\\s]+)|(https?://[^\\s]+))",
+//                    "URL").replaceAll("@[^\\s]+", "ATUSER").replaceAll("#",
+//                    "").replaceAll("\\p{Punct}+", "");
+
             String[] tweetArray = tweet.split(" ");
 
             for(int i=0; i<tweetArray.length; i++) {
-                if(!(container.contains(tweet)))
-                    context.write(new Text(tweet), new IntWritable(1));
+                if(!container.contains(tweetArray[i]) && !tweetArray[i].contains("\n") && !tweetArray[i].contains("\t"))
+                    context.write(new Text(tweetArray[i]), new IntWritable(1));
             }
         } catch (TwitterException e) {
 
