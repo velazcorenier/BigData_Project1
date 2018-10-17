@@ -1,4 +1,4 @@
-package messagepackage;
+package messagestringpackage;
 
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
@@ -11,21 +11,19 @@ import twitter4j.User;
 
 import java.io.IOException;
 
-
-public class TwitterMessageMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
+public class TwitterMessageStringMapper extends Mapper<LongWritable, Text, Text, Text> {
     @Override
     public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
+
 
         String rawTweet = value.toString();
 
         try {
             Status status = TwitterObjectFactory.createStatus(rawTweet);
-            //String text = status.getText().replaceAll("[^\\w]", " ");
+            String text = status.getText().replaceAll("[^\\w]", " ");
             User user = status.getUser();
-            String userName = user.getName().replaceAll("[^\\w]", " ");
-            context.write(new Text(userName), new IntWritable(1));
-
-
+            String userName = user.getName();
+            context.write(new Text(userName), new Text(text));
         } catch (TwitterException e) {
 
         }
