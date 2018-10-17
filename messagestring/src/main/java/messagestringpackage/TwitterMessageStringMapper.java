@@ -22,7 +22,7 @@ public class TwitterMessageStringMapper extends Mapper<LongWritable, Text, Text,
             Status status = TwitterObjectFactory.createStatus(rawTweet);
             String text = status.getText().replaceAll("[^\\w]", " ");
             User user = status.getUser();
-            String userName = user.getName();
+            String userName = user.getName().replaceAll("[^\\w]", " ");
             context.write(new Text(userName), new Text(text));
         } catch (TwitterException e) {
 

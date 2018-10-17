@@ -25,7 +25,7 @@ public class TwitterMessageStringDriver {
         job.setReducerClass(TwitterMessageStringReducer.class);
 
         job.setOutputKeyClass(Text.class);
-        job.setOutputValueClass(IntWritable.class);
+        job.setOutputValueClass(Text.class);
         System.out.println("Done!");
         System.exit(job.waitForCompletion(true) ? 0 : 1);
     }

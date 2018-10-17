@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["columnchart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Words', 'Ocurrences'],
+          ['Diarrhea',  9132],
+          ['Ebola',  4787],
+          ['Measles',  3513],
+          ['Zika',  2180],
+          ['Trump', 2061],
+          ['Headache', 305]
+        ]);
+
+        var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+        chart.draw(data, {width: 400, height: 240, is3D: true, title: 'Keyword Ocurrences'});
+      }
+    </script>
+  </head>
+
+  <body>
+    <div id="chart_div"></div>
+  </body>
+</html>
