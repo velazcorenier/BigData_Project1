@@ -21,12 +21,11 @@ public class TwitterRepliesMapper extends Mapper<LongWritable, Text, Text, IntWr
 
         try {
             Status status = TwitterObjectFactory.createStatus(rawTweet);
-            User user = status.getUser();
-            String userName = user.getName();
-            int userReplies = (int) status.getInReplyToStatusId();
+            long originalMessageId = status.getInReplyToStatusId();
+            String screenName = status.getInReplyToScreenName();
 
-            context.write(new Text(userName), new IntWritable(userReplies));
-
+            if(screenName != null)
+                context.write(new Text(screenName + "-" + originalMessageId), new IntWritable(1));
 
         } catch (TwitterException e) {
 
