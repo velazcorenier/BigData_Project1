@@ -25,7 +25,7 @@ public class TwitterRepliesMapper extends Mapper<LongWritable, Text, Text, IntWr
             String screenName = status.getInReplyToScreenName();
 
             if(screenName != null)
-                context.write(new Text(screenName + "-" + originalMessageId), new IntWritable(1));
+                context.write(new Text(screenName + "-ID:" + originalMessageId), new IntWritable(1));
 
         } catch (TwitterException e) {
 
