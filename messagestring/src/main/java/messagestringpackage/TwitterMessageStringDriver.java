@@ -11,7 +11,7 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 public class TwitterMessageStringDriver {
     public static void main(String[] args) throws Exception {
         if (args.length != 2) {
-            System.err.println("Usage: TwitterMessageDriver <input path> <output path>");
+            System.err.println("Usage: TwitterMessageStringDriver <input path> <output path>");
             System.exit(-1);
         }
         Job job = new Job();

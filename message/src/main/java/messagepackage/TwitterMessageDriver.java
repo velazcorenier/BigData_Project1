@@ -16,7 +16,7 @@ public class TwitterMessageDriver {
         }
         Job job = new Job();
         job.setJarByClass(TwitterMessageDriver.class);
-        job.setJobName("Finding and counting all message from each user");
+        job.setJobName("Counting all message from each user");
 
         FileInputFormat.addInputPath(job, new Path(args[0]));
         FileOutputFormat.setOutputPath(job, new Path(args[1]));
