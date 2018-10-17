@@ -12,22 +12,21 @@ import twitter4j.User;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 
 public class TwitterUniqueNamesMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
     @Override
     public void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
         String rawTweet = value.toString();
-        ArrayList<User> userList = new ArrayList<User>();
+        ArrayList<String> uniqueScreenNameList = new ArrayList<String>();
 
         try {
             Status status = TwitterObjectFactory.createStatus(rawTweet);
             User user = status.getUser();
-            userList.add(user);
-
-            if(!userList.contains(user))
-                context.write(new Text(user.toString()), new IntWritable(1));
-
+            if(!uniqueScreenNameList.contains(user.getScreenName())) {
+                uniqueScreenNameList.add(user.getScreenName());
+                context.write(new Text(user.getScreenName()), new IntWritable());
+            }
         } catch (TwitterException e) {
 
         }
