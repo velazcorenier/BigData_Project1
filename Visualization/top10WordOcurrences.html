@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {packages: ['corechart', 'bar']});
+google.charts.setOnLoadCallback(drawStacked);
+
+function drawStacked() {
+      var data = google.visualization.arrayToDataTable([
+        ['Words', 'Counter'],
+ ['i', 50037],
+['flu', 46104],
+['is', 21985],
+['have', 12787],
+['diarrhea', 10158],
+['ebola', 5588],
+['shot', 5228],
+['people', 4815],
+['season', 4713],
+['they', 4701],
+
+      ]);
+
+      var options = {
+        title: 'Words Ocurrence without stopwords',
+        chartArea: {width: '50%',height: '40000%'},
+        isStacked: true,
+        hAxis: {
+          title: 'Ocurrences',
+          minValue: 0,
+        },
+        vAxis: {
+          title: 'Words'
+        }
+      };
+      var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+    }
+    </script>
+  </head>
+
+  <body>
+    <div id="chart_div"></div>
+  </body>
+</html>
